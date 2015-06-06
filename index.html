@@ -108,6 +108,7 @@
 				container.appendChild( renderer.domElement );
 
 				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'touchmove', onDocumentMouseMove, false );
 
 				//
 
@@ -128,6 +129,15 @@
 			}
 
 			function onDocumentMouseMove( event ) {
+
+				event.preventDefault()
+
+				if(event.changedTouches !== undefined){
+					console.log(event)
+
+					event.clientX = event.changedTouches[0].clientX * 3
+					event.clientY = event.changedTouches[0].clientY * 3
+				}
 
 				mouseX = ( event.clientX - windowHalfX ) / 2;
 				mouseY = ( event.clientY - windowHalfY ) / 2;
